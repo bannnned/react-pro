@@ -1,0 +1,67 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  background: #f0eee7;
+  border-radius: 13px;
+}
+
+.list {
+  display: grid;
+  gap: 1px;
+  margin: 22px 0 0;
+  padding: 0;
+  overflow: hidden;
+  background: #e8e5dd;
+  border: 1px solid #e8e5dd;
+  border-radius: 14px;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  background: #fff;
+}
+
+.removeButton {
+  padding: 7px 9px;
+  color: #9a3d35;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background: #f8ebe8;
+}
+
+.removeButton:focus-visible {
+  outline: 3px solid rgb(154 61 53 / 22%);
+}
+
+.empty {
+  margin: 22px 0 0;
+  padding: 42px 18px;
+  color: #77736a;
+  background: #faf9f5;
+  border: 1px dashed #d7d3c8;
+  border-radius: 14px;
+  text-align: center;
+}
+
+@media (max-width: 540px) {
+  .item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .removeButton {
+    justify-self: start;
+  }
+}
