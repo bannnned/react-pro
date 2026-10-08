@@ -1,25 +1,28 @@
-import { useCallback, useMemo, useState } from 'react';
-import type { Task } from 'entities/task';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useGetTasksQuery, type Task } from 'entities/task';
 
 export type Filter = 'all' | 'completed' | 'incomplete';
 
-export function useTasks(initial?: Task[]): {
+export function useTasks(): {
   tasks: Task[];
   filter: Filter;
   setFilter: (filter: Filter) => void;
-  removeTask: (id: string) => void;
-  toggleTask: (id: string) => void;
+  removeTask: (id: number) => void;
+  toggleTask: (id: number) => void;
+  isLoading: boolean;
+  isError: boolean;
 } {
-  const [tasks, setTasks] = useState<Task[]>(
-    () =>
-      initial ?? [
-        { id: '1', title: 'Настроить структуру проекта', completed: true },
-        { id: '2', title: 'Добавить маршрутизацию', completed: true },
-        { id: '3', title: 'Собрать список задач', completed: false },
-        { id: '4', title: 'Проверить линтер и сборку', completed: false },
-      ],
-  );
+  const { data: remoteTasks, isLoading, isError } = useGetTasksQuery();
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<Filter>('all');
+  const isInitialized = useRef(false);
+
+  useEffect(() => {
+    if (remoteTasks && !isInitialized.current) {
+      setTasks(remoteTasks);
+      isInitialized.current = true;
+    }
+  }, [remoteTasks]);
 
   const filteredTasks = useMemo(
     () =>
@@ -31,11 +34,11 @@ export function useTasks(initial?: Task[]): {
     [filter, tasks],
   );
 
-  const removeTask = useCallback((id: string) => {
+  const removeTask = useCallback((id: number) => {
     setTasks((currentTasks) => currentTasks.filter((task) => task.id !== id));
   }, []);
 
-  const toggleTask = useCallback((id: string) => {
+  const toggleTask = useCallback((id: number) => {
     setTasks((currentTasks) =>
       currentTasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task,
@@ -43,5 +46,13 @@ export function useTasks(initial?: Task[]): {
     );
   }, []);
 
-  return { tasks: filteredTasks, filter, setFilter, removeTask, toggleTask };
+  return {
+    tasks: filteredTasks,
+    filter,
+    setFilter,
+    removeTask,
+    toggleTask,
+    isLoading,
+    isError,
+  };
 }

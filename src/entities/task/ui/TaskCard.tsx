@@ -4,8 +4,8 @@ import styles from './TaskCard.module.css';
 
 interface TaskCardProps {
   task: Task;
-  onRemove: (id: string) => void;
-  onToggle: (id: string) => void;
+  onRemove: (id: number) => void;
+  onToggle: (id: number) => void;
 }
 
 export const TaskCard = memo(function TaskCard({

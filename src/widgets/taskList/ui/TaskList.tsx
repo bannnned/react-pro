@@ -7,8 +7,8 @@ interface TaskListProps {
   tasks: Task[];
   filter: Filter;
   onFilterChange: (filter: Filter) => void;
-  onRemove: (id: string) => void;
-  onToggle: (id: string) => void;
+  onRemove: (id: number) => void;
+  onToggle: (id: number) => void;
 }
 
 const filters: Array<{ value: Filter; label: string }> = [

@@ -16,6 +16,18 @@
   text-transform: uppercase;
 }
 
+.message,
+.error {
+  margin: 0;
+  padding: 28px 0;
+  color: #77736a;
+  text-align: center;
+}
+
+.error {
+  color: #9a3d35;
+}
+
 @media (max-width: 540px) {
   .widget {
     padding: 16px;
