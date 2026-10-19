@@ -1,0 +1,92 @@
+.form,
+.success {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  background: #20201d;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.step,
+.success span {
+  color: #9cc8af;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label,
+.confirmation span {
+  color: #d8d6ce;
+  font-size: 14px;
+}
+
+.field input {
+  min-width: 0;
+  padding: 11px 12px;
+  color: #20201d;
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.field input:focus {
+  outline: 3px solid rgb(156 200 175 / 35%);
+}
+
+.confirmation {
+  display: grid;
+  gap: 5px;
+}
+
+.confirmation strong,
+.success strong {
+  overflow-wrap: anywhere;
+  font-size: 19px;
+}
+
+.error,
+.pending,
+.success p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.error {
+  color: #ffb9b2;
+}
+
+.pending,
+.success p {
+  color: #c4c1b8;
+}
+
+.form button {
+  justify-self: start;
+  padding: 11px 14px;
+  color: #1f513b;
+  background: #b9dfc8;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.form button:focus-visible {
+  outline: 3px solid rgb(255 255 255 / 30%);
+  outline-offset: 2px;
+}
