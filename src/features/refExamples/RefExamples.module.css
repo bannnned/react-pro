@@ -1,0 +1,116 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 310px;
+  padding: 28px;
+  background: #fffef9;
+  border: 1px solid #ddd9ce;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgb(55 50 38 / 6%);
+}
+
+.number {
+  margin: 0 0 24px;
+  color: #297a57;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.card h2 {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.description {
+  margin: 11px 0 24px;
+  color: #716d64;
+  line-height: 1.55;
+}
+
+.button,
+.secondaryButton {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 11px 17px;
+  color: #ffffff;
+  background: #297a57;
+  border: 1px solid #297a57;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #216747;
+}
+
+.secondaryButton {
+  margin-top: 18px;
+  color: #2d5f49;
+  background: transparent;
+  border-color: #9bb5a7;
+}
+
+.secondaryButton:hover {
+  background: #edf3ef;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+  color: #4d4a43;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  padding: 11px 12px;
+  color: #282721;
+  background: #ffffff;
+  border: 1px solid #cbc7bd;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 400;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: #297a57;
+  box-shadow: 0 0 0 3px rgb(41 122 87 / 12%);
+}
+
+.result,
+.status {
+  margin: 16px 0 0;
+  color: #5e5a52;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.status {
+  margin-top: auto;
+  padding: 12px 14px;
+  color: #296448;
+  background: #edf5f0;
+  border-radius: 10px;
+}
+
+@media (max-width: 560px) {
+  .card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .fields {
+    grid-template-columns: 1fr;
+  }
+}
