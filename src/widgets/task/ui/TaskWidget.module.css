@@ -1,0 +1,36 @@
+.widget {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e7e3d9;
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgb(54 49 38 / 8%);
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  color: #77736a;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.message,
+.error {
+  margin: 0;
+  padding: 28px 0;
+  color: #77736a;
+  text-align: center;
+}
+
+.error {
+  color: #9a3d35;
+}
+
+@media (max-width: 540px) {
+  .widget {
+    padding: 16px;
+    border-radius: 16px;
+  }
+}

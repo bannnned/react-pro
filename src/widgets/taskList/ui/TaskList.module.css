@@ -1,0 +1,35 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  background: #f0eee7;
+  border-radius: 13px;
+}
+
+.list {
+  display: grid;
+  gap: 1px;
+  margin: 22px 0 0;
+  padding: 0;
+  overflow: hidden;
+  background: #e8e5dd;
+  border: 1px solid #e8e5dd;
+  border-radius: 14px;
+  list-style: none;
+}
+
+.item {
+  padding: 18px;
+  background: #fff;
+}
+
+.empty {
+  margin: 22px 0 0;
+  padding: 42px 18px;
+  color: #77736a;
+  background: #faf9f5;
+  border: 1px dashed #d7d3c8;
+  border-radius: 14px;
+  text-align: center;
+}
