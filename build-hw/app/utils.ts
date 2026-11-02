@@ -1,11 +1,7 @@
-export function formatGreeting(name: string) {
-  return `Привет, ${name}!`;
+export function add(first: number, second: number) {
+  return first + second;
 }
 
-export function sumNumbers(values: number[]) {
-  return values.reduce((total, value) => total + value, 0);
-}
-
-export function createDebugInfo() {
-  return `Сборка запущена в ${new Date().toISOString()}`;
+export function multiply(first: number, second: number) {
+  return first * second;
 }
