@@ -1,18 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import { ThemeContext, type Theme } from './ThemeContext';
 
 export function ThemeProvider({ children }: PropsWithChildren) {
   const [theme, setTheme] = useState<Theme>('light');
 
-  const value = useMemo(
-    () => ({
-      theme,
-      toggleTheme: () =>
-        setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light')),
-    }),
-    [theme],
-  );
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
+  };
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }

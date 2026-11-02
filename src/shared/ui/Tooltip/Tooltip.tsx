@@ -75,7 +75,7 @@ export function Tooltip({
         tooltipStyle &&
         createPortal(
           <span
-            className={`${styles.tooltip} ${styles[theme]}`}
+            className={`${styles.tooltip} ${theme === 'dark' ? styles.dark : ''}`}
             style={tooltipStyle}
             role="tooltip"
           >

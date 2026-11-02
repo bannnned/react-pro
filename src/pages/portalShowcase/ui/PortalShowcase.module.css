@@ -1,184 +1,77 @@
 .page {
-  width: min(100% - 32px, 1080px);
   min-height: 100vh;
-  margin: 0 auto;
-  padding: 58px 0 80px;
-  transition:
-    color 160ms ease,
-    background 160ms ease;
-}
-
-.page::before {
-  position: fixed;
-  z-index: -1;
-  inset: 0;
-  content: '';
-  background: inherit;
-}
-
-.light {
-  color: #292821;
-  background: #f5f4ef;
+  padding: 40px;
+  color: #222;
+  background: #f4f4f4;
 }
 
 .dark {
-  color: #f2efe5;
-  background: #1e1e1a;
+  color: #eee;
+  background: #222;
 }
 
 .header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 32px;
-  margin-bottom: 38px;
-}
-
-.eyebrow,
-.cardNumber {
-  margin: 0 0 9px;
-  color: #3a8a64;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  max-width: 800px;
+  margin: 0 auto 30px;
 }
 
 .header h1 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(44px, 7vw, 68px);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1;
 }
 
-.intro {
-  max-width: 660px;
-  margin: 16px 0 0;
-  color: inherit;
-  font-size: 17px;
-  line-height: 1.55;
-  opacity: 0.68;
-}
-
-.navigation {
+.actions {
   display: flex;
-  flex: 0 0 auto;
-  gap: 9px;
+  align-items: center;
+  gap: 12px;
 }
 
-.navigation a,
-.navigation button {
-  padding: 9px 12px;
+.actions a {
   color: inherit;
-  background: transparent;
-  border: 1px solid #aaa59a;
-  border-radius: 9px;
-  font: inherit;
-  text-decoration: none;
-  cursor: pointer;
 }
 
-.grid {
+.content {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  min-height: 340px;
-  padding: 30px;
-  color: #292821;
-  background: #fffef9;
-  border: 1px solid #ddd9ce;
-  border-radius: 18px;
-  box-shadow: 0 16px 44px rgb(0 0 0 / 8%);
+  padding: 24px;
+  color: #222;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .dark .card {
-  color: #f2efe5;
-  background: #292821;
-  border-color: #46443c;
+  color: #eee;
+  background: #333;
+  border-color: #555;
 }
 
-.card h2 {
-  margin: 12px 0 0;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 31px;
-  font-weight: 500;
-}
-
-.card > p:not(.cardNumber, .counter, .status) {
-  margin: 12px 0 24px;
-  color: inherit;
-  line-height: 1.55;
-  opacity: 0.68;
-}
-
-.tooltipButton,
-.deleteButton,
-.restoreButton {
-  align-self: flex-start;
-  padding: 11px 16px;
-  border: 1px solid;
-  border-radius: 9px;
-  font: inherit;
-  font-weight: 600;
+.card button,
+.actions button {
+  padding: 8px 12px;
   cursor: pointer;
 }
 
-.tooltipButton {
-  color: #ffffff;
-  background: #297a57;
-  border-color: #297a57;
-}
-
-.deleteButton {
-  color: #ffffff;
-  background: #a63d36;
-  border-color: #a63d36;
-}
-
-.restoreButton {
-  color: #2e6e4f;
-  background: transparent;
-  border-color: #63967e;
-}
-
-.counter,
-.status {
-  margin: auto 0 0;
-  padding-top: 28px;
-  color: inherit;
-  font-size: 14px;
-  opacity: 0.68;
-}
-
-@media (max-width: 760px) {
-  .header {
-    flex-direction: column;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 540px) {
+@media (max-width: 650px) {
   .page {
-    width: min(100% - 20px, 1080px);
-    padding: 38px 0 56px;
+    padding: 24px 16px;
   }
 
-  .navigation {
-    flex-wrap: wrap;
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .card {
-    min-height: 310px;
-    padding: 23px;
+  .content {
+    grid-template-columns: 1fr;
   }
 }
