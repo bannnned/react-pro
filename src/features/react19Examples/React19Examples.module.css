@@ -1,0 +1,170 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 100%;
+  padding: 26px;
+  border: 1px solid #d8d1c4;
+  border-radius: 24px;
+  background: #fffdf8;
+  box-shadow: 0 16px 36px rgb(52 47 38 / 8%);
+}
+
+.heading {
+  display: grid;
+  gap: 8px;
+}
+
+.heading h2,
+.heading p {
+  margin: 0;
+}
+
+.heading h2 {
+  font-size: 1.35rem;
+  color: #27251f;
+}
+
+.heading p {
+  line-height: 1.55;
+  color: #6a655b;
+}
+
+.form {
+  display: grid;
+  gap: 15px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+  font-weight: 600;
+  color: #38352f;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid #cfc8ba;
+  border-radius: 12px;
+  padding: 11px 13px;
+  background: #ffffff;
+  color: #27251f;
+  font: inherit;
+  font-weight: 400;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.field textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: #537a61;
+  box-shadow: 0 0 0 3px rgb(83 122 97 / 14%);
+  outline: none;
+}
+
+.button {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 18px;
+  background: #355f45;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.button:hover:not(:disabled) {
+  background: #294c37;
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.status {
+  min-height: 24px;
+  margin: 0;
+  color: #42644d;
+  font-weight: 700;
+}
+
+.todoForm {
+  display: flex;
+  gap: 10px;
+}
+
+.todoForm input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #cfc8ba;
+  border-radius: 999px;
+  padding: 11px 15px;
+  font: inherit;
+}
+
+.todoForm input:focus {
+  border-color: #537a61;
+  box-shadow: 0 0 0 3px rgb(83 122 97 / 14%);
+  outline: none;
+}
+
+.todoList {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #f3f0e8;
+  color: #39362f;
+}
+
+.todoItemPending {
+  opacity: 0.62;
+}
+
+.pendingLabel {
+  flex-shrink: 0;
+  color: #766c59;
+  font-size: 0.82rem;
+}
+
+.successBox {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #e9f3ec;
+  color: #31543d;
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 20px;
+  }
+
+  .todoForm {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
