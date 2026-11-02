@@ -9,12 +9,10 @@ const entryPoints = {
 const commonOptions: BuildOptions = {
   entryPoints,
   bundle: true,
-  external: ['react', 'lodash', 'lodash/*'],
+  external: ['react'],
   minify: true,
   sourcemap: true,
   treeShaking: true,
-  target: 'es2022',
-  logLevel: 'info',
 };
 
 await Promise.all([

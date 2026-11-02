@@ -1,20 +1,9 @@
-import { loadRoute, type RouteName } from './routes';
-import { formatGreeting, sumNumbers } from './utils';
+import { routes } from './routes';
+import { add } from './utils';
 
-const routeName: RouteName = location.hash === '#about' ? 'about' : 'home';
-const total = sumNumbers([4, 7, 9]);
+console.log(add(2, 3));
 
-document.body.innerHTML = `
-  <main>
-    <h1>${formatGreeting('esbuild')}</h1>
-    <p>Сумма чисел: ${total}</p>
-    <p id="route-content">Загружаем страницу...</p>
-  </main>
-`;
+const routeName = location.hash === '#about' ? 'about' : 'home';
+const route = await routes[routeName]();
 
-const route = await loadRoute(routeName);
-const routeContent = document.querySelector('#route-content');
-
-if (routeContent) {
-  routeContent.textContent = route.renderPage();
-}
+console.log(route.renderPage());
