@@ -12,7 +12,12 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:hw": "npm run build:hw:app && npm run build:hw:lib && npm run build:hw:swc",
+    "build:hw:app": "tsx build-hw/configs/esbuild.app.config.ts",
+    "dev:hw:app": "tsx build-hw/configs/esbuild.app.config.ts --dev",
+    "build:hw:lib": "tsx build-hw/configs/esbuild.lib.config.ts",
+    "build:hw:swc": "tsx build-hw/configs/swc.lib.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -26,14 +31,18 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@swc/cli": "^0.8.2",
+    "@swc/core": "^1.16.21",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
+    "esbuild": "^0.28.2",
     "eslint": "^10.0.2",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.12.0",
     "prettier": "^3.9.0",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.71.0",
     "vite": "^8.3.1"
