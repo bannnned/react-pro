@@ -12,6 +12,7 @@ export function PublicPage() {
           Открытая зона
         </Link>
         <nav className={styles.navigation} aria-label="Навигация">
+          <Link to="/portals">Порталы</Link>
           <Link to="/refs">Примеры useRef</Link>
           <Link to={isAuthenticated ? '/profile' : '/login'}>
             {isAuthenticated ? 'Профиль' : 'Войти'}

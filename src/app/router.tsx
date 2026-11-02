@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoginPage, ProfilePage, ProtectedRoute, PublicPage } from 'features/authRouting';
 import { RefExamplesPage } from 'pages/refExamples';
+import { PortalShowcase } from 'pages/portalShowcase';
 import { RegistrationPage } from 'pages/registration';
 import { TaskPage } from 'pages/tasks';
 
@@ -16,6 +17,7 @@ export function AppRouter() {
       </Route>
 
       <Route path="/refs" element={<RefExamplesPage />} />
+      <Route path="/portals" element={<PortalShowcase />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/tasks" element={<TaskPage />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
