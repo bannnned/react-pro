@@ -1,0 +1,82 @@
+.card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.mark {
+  display: grid;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  place-items: center;
+  color: #fff;
+  background: transparent;
+  border: 2px solid #b8b5ac;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mark:hover {
+  border-color: #77736a;
+}
+
+.mark:focus-visible,
+.removeButton:focus-visible {
+  outline: 3px solid rgb(45 108 223 / 24%);
+  outline-offset: 2px;
+}
+
+.completed .mark {
+  background: #297a57;
+  border-color: #297a57;
+}
+
+.title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.completed .title {
+  color: #74716a;
+  text-decoration: line-through;
+  text-decoration-color: #aaa69c;
+}
+
+.status {
+  margin: 3px 0 0;
+  color: #77736a;
+  font-size: 13px;
+}
+
+.removeButton {
+  padding: 7px 9px;
+  color: #9a3d35;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background: #f8ebe8;
+}
+
+@media (max-width: 540px) {
+  .card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .removeButton {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
