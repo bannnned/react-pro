@@ -7,10 +7,7 @@ type Todo = {
   pending?: boolean;
 };
 
-const initialTodos: Todo[] = [
-  { id: 'first', text: 'Разобраться с useActionState' },
-  { id: 'second', text: 'Попробовать оптимистичное обновление' },
-];
+const initialTodos: Todo[] = [{ id: 'first', text: 'Разобраться с React 19' }];
 
 function wait(delay: number) {
   return new Promise((resolve) => setTimeout(resolve, delay));
@@ -48,18 +45,10 @@ export function TodoListOptimistic() {
 
   return (
     <article className={styles.card}>
-      <div className={styles.heading}>
-        <h2>Оптимистичный список</h2>
-        <p>Новая задача появляется сразу, пока запрос продолжает выполняться в фоне.</p>
-      </div>
+      <h2>Оптимистичный список</h2>
 
       <form className={styles.todoForm} action={addTodo}>
-        <input
-          name="todo"
-          aria-label="Новая задача"
-          placeholder="Что нужно сделать?"
-          required
-        />
+        <input name="todo" aria-label="Новая задача" required />
         <button className={styles.button} type="submit">
           Добавить
         </button>
@@ -72,7 +61,7 @@ export function TodoListOptimistic() {
             key={todo.id}
           >
             <span>{todo.text}</span>
-            {todo.pending && <span className={styles.pendingLabel}>сохраняется</span>}
+            {todo.pending && <span>сохраняется...</span>}
           </li>
         ))}
       </ul>

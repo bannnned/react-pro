@@ -11,17 +11,10 @@ export function React19Page() {
     <main className={styles.page}>
       <div className={styles.container}>
         <Link className={styles.backLink} to="/public">
-          Назад на главную
+          Назад
         </Link>
 
-        <header className={styles.intro}>
-          <p className={styles.eyebrow}>React 19</p>
-          <h1>Actions на практике</h1>
-          <p className={styles.description}>
-            Три небольших примера с асинхронными формами, состоянием отправки и быстрым
-            обновлением интерфейса.
-          </p>
-        </header>
+        <h1>React 19</h1>
 
         <section className={styles.grid}>
           <FormWithAsyncSave />

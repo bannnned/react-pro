@@ -2,55 +2,40 @@ import { useActionState, useState } from 'react';
 import styles from './React19Examples.module.css';
 
 type ProfileState = {
-  status: 'idle' | 'success';
   message: string;
-  submissionId: number;
 };
 
 const initialState: ProfileState = {
-  status: 'idle',
   message: '',
-  submissionId: 0,
 };
 
 function wait(delay: number) {
   return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-async function profileReducer(
-  previousState: ProfileState,
-  formData: FormData,
-): Promise<ProfileState> {
-  const name = String(formData.get('name') ?? '').trim();
-  const email = String(formData.get('email') ?? '').trim();
-  const message = String(formData.get('message') ?? '').trim();
-
-  await wait(1000);
-
-  return {
-    status: 'success',
-    message: `Профиль ${name} сохранен. Сообщение из ${message.length} символов отправлено с адреса ${email}`,
-    submissionId: previousState.submissionId + 1,
-  };
-}
-
 export function ActionStateWithReducer() {
+  const [isDirty, setIsDirty] = useState(false);
+
+  async function profileReducer(_: ProfileState, formData: FormData) {
+    const name = String(formData.get('name') ?? '').trim();
+    const email = String(formData.get('email') ?? '').trim();
+    const message = String(formData.get('message') ?? '').trim();
+
+    await wait(1000);
+    setIsDirty(false);
+
+    return {
+      message: `${name}, ${email}: ${message}`,
+    };
+  }
+
   const [state, formAction, isPending] = useActionState(profileReducer, initialState);
-  const [dirtySubmissionId, setDirtySubmissionId] = useState<number | null>(null);
-  const isDirty = dirtySubmissionId === state.submissionId;
 
   return (
     <article className={styles.card}>
-      <div className={styles.heading}>
-        <h2>Форма с reducer</h2>
-        <p>Один action обрабатывает несколько полей и хранит результат отправки.</p>
-      </div>
+      <h2>Форма с reducer</h2>
 
-      <form
-        className={styles.form}
-        action={formAction}
-        onChange={() => setDirtySubmissionId(state.submissionId)}
-      >
+      <form className={styles.form} action={formAction} onChange={() => setIsDirty(true)}>
         <label className={styles.field}>
           Имя
           <input name="name" autoComplete="name" required />
@@ -68,21 +53,13 @@ export function ActionStateWithReducer() {
         </button>
       </form>
 
-      {isPending && (
-        <p className={styles.status} aria-live="polite">
-          Данные отправляются
-        </p>
-      )}
-      {!isPending && isDirty && (
-        <p className={styles.status} aria-live="polite">
-          Есть несохраненные изменения
-        </p>
-      )}
-      {!isPending && !isDirty && state.status === 'success' && (
-        <div className={styles.successBox} role="status">
-          {state.message}
-        </div>
-      )}
+      <p className={styles.status} aria-live="polite">
+        {isPending
+          ? 'Отправка...'
+          : isDirty
+            ? 'Есть изменения'
+            : state.message || 'Ожидание'}
+      </p>
     </article>
   );
 }
