@@ -1,0 +1,75 @@
+.card {
+  padding: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.form,
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.form {
+  gap: 14px;
+}
+
+.field input,
+.field textarea,
+.todoForm input {
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.field textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.button {
+  width: fit-content;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.status {
+  min-height: 24px;
+  margin-bottom: 0;
+}
+
+.todoForm {
+  display: flex;
+  gap: 8px;
+}
+
+.todoForm input {
+  flex: 1;
+  min-width: 0;
+}
+
+.todoList {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+  background: #eee;
+  border-radius: 4px;
+}
+
+.todoItemPending {
+  opacity: 0.6;
+}

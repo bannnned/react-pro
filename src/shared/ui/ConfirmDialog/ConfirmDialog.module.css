@@ -1,0 +1,43 @@
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  background: rgb(0 0 0 / 45%);
+  place-items: center;
+}
+
+.dialog {
+  width: min(400px, calc(100% - 32px));
+  padding: 24px;
+  color: #222;
+  background: white;
+  border-radius: 8px;
+}
+
+.dark {
+  color: #eee;
+  background: #333;
+}
+
+.dialog h2 {
+  margin-top: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.actions button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.confirmButton {
+  color: white;
+  background: #b83232;
+  border: 1px solid #b83232;
+}
