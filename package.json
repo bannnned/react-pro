@@ -17,7 +17,7 @@
     "build:hw:app": "tsx build-hw/configs/esbuild.app.config.ts",
     "dev:hw:app": "tsx build-hw/configs/esbuild.app.config.ts --dev",
     "build:hw:lib": "tsx build-hw/configs/esbuild.lib.config.ts",
-    "build:hw:swc": "tsx build-hw/configs/swc.lib.config.ts"
+    "build:hw:swc": "swc build-hw/lib -d build-hw/dist/swc/esm --strip-leading-paths --delete-dir-on-start -s true -C module.type=es6 -C minify=true && swc build-hw/lib -d build-hw/dist/swc/cjs --strip-leading-paths --delete-dir-on-start -s true -C module.type=commonjs -C minify=true"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
