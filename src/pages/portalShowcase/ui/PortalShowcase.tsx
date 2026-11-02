@@ -7,87 +7,48 @@ import styles from './PortalShowcase.module.css';
 function ShowcaseContent() {
   const { theme, toggleTheme } = useTheme();
   const [parentClicks, setParentClicks] = useState(0);
-  const [itemExists, setItemExists] = useState(true);
-  const [message, setMessage] = useState('Элемент пока на месте');
+  const [result, setResult] = useState('');
   const { dialogOptions, showConfirmDialog, closeConfirmDialog } = useConfirmDialog();
 
-  const handleDelete = async () => {
+  const openDialog = async () => {
     const confirmed = await showConfirmDialog({
       title: 'Удалить элемент?',
-      description: 'После подтверждения карточка исчезнет со страницы.',
+      description: 'Это действие нельзя отменить.',
     });
 
-    if (confirmed) {
-      setItemExists(false);
-      setMessage('Элемент удален');
-    } else {
-      setMessage('Удаление отменено');
-    }
+    setResult(confirmed ? 'Подтверждено' : 'Отменено');
   };
 
   return (
-    <main className={`${styles.page} ${styles[theme]}`}>
+    <main className={`${styles.page} ${theme === 'dark' ? styles.dark : ''}`}>
       <header className={styles.header}>
-        <div>
-          <p className={styles.eyebrow}>Домашнее задание 8</p>
-          <h1>React Portal</h1>
-          <p className={styles.intro}>
-            Tooltip и диалог находятся вне основного DOM-дерева, но сохраняют события и
-            контекст темы.
-          </p>
-        </div>
-        <nav className={styles.navigation} aria-label="Навигация">
-          <Link to="/public">На главную</Link>
+        <h1>React Portal</h1>
+        <div className={styles.actions}>
+          <Link to="/public">Назад</Link>
           <button type="button" onClick={toggleTheme}>
-            {theme === 'light' ? 'Темная тема' : 'Светлая тема'}
+            Сменить тему
           </button>
-        </nav>
+        </div>
       </header>
 
-      <section className={styles.grid}>
+      <section className={styles.content}>
         <article
           className={styles.card}
           onClick={() => setParentClicks((clicks) => clicks + 1)}
         >
-          <p className={styles.cardNumber}>01</p>
           <h2>Tooltip</h2>
-          <p>
-            Наведите курсор на кнопку. Клик по ней также дойдет до родительской карточки.
-          </p>
-          <Tooltip
-            content={`Тема внутри портала: ${theme}`}
-            position={TooltipPosition.Bottom}
-          >
-            <button className={styles.tooltipButton} type="button">
-              Наведите сюда
-            </button>
+          <Tooltip content={`Текущая тема: ${theme}`} position={TooltipPosition.Bottom}>
+            <button type="button">Наведи на меня</button>
           </Tooltip>
-          <p className={styles.counter}>Кликов по карточке: {parentClicks}</p>
+          <p>Кликов по карточке: {parentClicks}</p>
         </article>
 
         <article className={styles.card}>
-          <p className={styles.cardNumber}>02</p>
           <h2>ConfirmDialog</h2>
-          <p>Диалог возвращает результат через Promise и не зависит от карточки.</p>
-          {itemExists ? (
-            <button className={styles.deleteButton} type="button" onClick={handleDelete}>
-              Удалить
-            </button>
-          ) : (
-            <button
-              className={styles.restoreButton}
-              type="button"
-              onClick={() => {
-                setItemExists(true);
-                setMessage('Элемент восстановлен');
-              }}
-            >
-              Восстановить
-            </button>
-          )}
-          <p className={styles.status} aria-live="polite">
-            {message}
-          </p>
+          <button type="button" onClick={openDialog}>
+            Открыть диалог
+          </button>
+          {result && <p>{result}</p>}
         </article>
       </section>
 
