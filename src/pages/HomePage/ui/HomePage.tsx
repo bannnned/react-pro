@@ -1,24 +1,51 @@
-import { WithProtection } from '../../../shared/store/HOCs/WithProtection';
-import { WithQuery } from '../../../shared/store/HOCs/WithQuery';
-import { LoadMore } from '../../../shared/ui/LoadMore';
-import { CardList } from '../../../widgets/CardList';
-import { useProducts } from '../../../shared/store/hooks/useProducts';
+import { Link, useSearchParams } from 'react-router-dom';
+import { CatalogResults } from '../../../features/products/ui/CatalogResults';
+import { useDebounce } from '../../../shared/hooks/useDebounce';
 
-const CardListWithQuery = WithQuery(CardList);
+const SORTS: ReadonlyArray<{ value: Sort; label: string }> = [
+	{ value: 'newest', label: 'Сначала новые' },
+	{ value: 'oldest', label: 'Сначала старые' },
+	{ value: 'low-price', label: 'Сначала дешевле' },
+	{ value: 'high-price', label: 'Сначала дороже' },
+];
 
-export const HomePage = WithProtection(() => {
-	const { products, isLoading, isError, error } = useProducts();
+export function HomePage() {
+	const [params, setParams] = useSearchParams();
+	const sort =
+		SORTS.find((option) => option.value === params.get('sort'))?.value ??
+		'newest';
+	const query = useDebounce((params.get('q') || '').trim(), 500);
 
 	return (
-		<>
-			<CardListWithQuery
-				title='Лакомства'
-				isLoading={isLoading}
-				isError={isError}
-				products={products}
-				error={error}
+		<section>
+			<h1>{query ? 'Результаты поиска' : 'Лакомства для собак'}</h1>
+			{query && <p className='search-caption'>По запросу «{query}»</p>}
+			<div className='catalog-toolbar'>
+				<label>
+					<span>Сортировка</span>
+					<select
+						value={sort}
+						onChange={(event) => {
+							const next = new URLSearchParams(params);
+							next.set('sort', event.currentTarget.value);
+							setParams(next, { replace: true });
+						}}>
+						{SORTS.map(({ value, label }) => (
+							<option key={value} value={value}>
+								{label}
+							</option>
+						))}
+					</select>
+				</label>
+				<Link className='catalog-add' to='/products/new'>
+					<span aria-hidden='true'>+</span> Добавить товар
+				</Link>
+			</div>
+			<CatalogResults
+				key={JSON.stringify([query, sort])}
+				searchText={query}
+				sort={sort}
 			/>
-			<LoadMore />
-		</>
+		</section>
 	);
-});
+}

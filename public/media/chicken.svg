@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="420" viewBox="0 0 700 420" role="img" aria-label="Упаковка DogFood КУРИЦА">
+  <rect width="700" height="420" fill="#f0eee8"/>
+  <ellipse cx="351" cy="354" rx="133" ry="9" fill="#2d281f" opacity=".12"/>
+  <g>
+    <path d="M230 44h244l-8 31 12 252q1 18-15 20H232q-16-2-15-20l12-252z" fill="#86632e"/>
+    <path d="M236 54h232M232 73h232M230 333h234" fill="none" stroke="#fff" opacity=".28" stroke-width="3"/>
+    <rect x="244" y="100" width="216" height="211" rx="15" fill="#fff1a1"/>
+    <g fill="#86632e" transform="translate(326 122)">
+      <circle cx="6" cy="25" r="6"/><circle cx="19" cy="12" r="7"/><circle cx="35" cy="12" r="7"/><circle cx="48" cy="25" r="6"/>
+      <path d="M12 41c0-7 8-14 15-14s15 7 15 14c0 7-8 10-15 7-7 3-15 0-15-7"/>
+    </g>
+    <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle" fill="#86632e">
+      <text x="352" y="205" font-size="34" font-weight="800">DogFood</text>
+      <text x="352" y="234" font-size="15" font-weight="700" letter-spacing="4">MINI</text>
+      <rect x="272" y="251" width="160" height="34" rx="10" fill="#86632e"/>
+      <text x="352" y="274" font-size="16" font-weight="700" fill="white" letter-spacing="1.5">КУРИЦА</text>
+    </g>
+  </g>
+</svg>

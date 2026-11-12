@@ -1,93 +1,94 @@
-import s from './ProfilePage.module.css';
-import classNames from 'classnames';
-import { ButtonBack } from '../../../shared/ui/ButtonBack';
-import { WithProtection } from '../../../shared/store/HOCs/WithProtection';
+import { useState, type FormEvent } from 'react';
+import { toast } from 'react-toastify';
+import {
+	useGetProfileQuery,
+	useUpdateProfileMutation,
+} from '../../../features/auth/api/authApi';
+import { Button, Input } from '../../../shared/ui/controls';
+import { QueryState } from '../../../shared/ui/QueryState';
+import { getMessageFromError } from '../../../shared/utils/getMessageFromError';
 
-export const ProfilePage = WithProtection(() => {
+function ProfileForm({ user }: { user: User }) {
+	const [update, { isLoading }] = useUpdateProfileMutation();
+	const [error, setError] = useState('');
+
+	async function submit(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const data = new FormData(event.currentTarget);
+		const read = (key: string) => String(data.get(key) ?? '').trim();
+		const name = read('name');
+		const about = read('about');
+		const avatarPath = read('avatarPath');
+		setError('');
+		if (!name || (avatarPath && !/^https?:\/\//i.test(avatarPath))) {
+			setError('Укажите имя и, при необходимости, ссылку HTTP или HTTPS.');
+			return;
+		}
+		try {
+			await update({ name, about, avatarPath }).unwrap();
+			toast.success('Профиль сохранён');
+		} catch (cause) {
+			setError(getMessageFromError(cause, 'Не удалось сохранить профиль'));
+		}
+	}
+
 	return (
-		<>
-			<ButtonBack />
-			<h1 className={s['form__title']}>Мои данные</h1>
-			<form className={classNames(s['form'], s['form'])}>
-				<div className={s['form__row']}>
-					<label className={s['form__label']} htmlFor='name'>
-						{''}
-						<input
-							className={s['input']}
-							name='name'
-							id='name'
-							type='text'
-							placeholder='Введите ваше имя'
-						/>
-					</label>
-					<label className={s['form__label']}>
-						{''}
-						<input
-							className={s['input']}
-							name='about'
-							id='about'
-							type='text'
-							placeholder='Описание профессии'
-						/>
-					</label>
-				</div>
-				<div className={s['form__row']}>
-					<label className={s['form__label']}>
-						{''}
-						<input
-							className={s['input']}
-							name='avatar'
-							id='avatar'
-							type='url'
-							placeholder='Введите ссылку на аватарку'
-						/>
-					</label>
-					<label className={s['form__label']}>
-						{''}
-						<input
-							className={s['input']}
-							name='email'
-							id='email'
-							type='text'
-							placeholder='email'
-						/>
-					</label>
-				</div>
-
-				<button
-					type='submit'
-					className={classNames(
-						s['form__btn'],
-						s['secondary'],
-						s['maxContent']
-					)}>
-					Сохранить
-				</button>
-			</form>
-			<h2 className={s['form__title']}>Изменить пароль</h2>
-			<form className={classNames(s['form'], s['form'])}>
-				<div className={classNames(s['form__row'], s['form__row_min'])}>
-					<label className={s['form__label']}>
-						{''}
-						<input
-							className={s['input']}
-							name='password'
-							id='password'
-							type='password'
-							placeholder='Пароль'
-						/>
-					</label>
-				</div>
-				<button
-					type='submit'
-					className={classNames(
-						s['form__btn'],
-						s['secondary'],
-						s['maxContent']
-					)}>
-					Сохранить
-				</button>
-			</form>
-		</>
+		<form className='form-fields' onSubmit={submit}>
+			<Input
+				label='Имя'
+				name='name'
+				defaultValue={user.name || ''}
+				required
+				maxLength={80}
+			/>
+			<Input
+				label='Электронная почта'
+				defaultValue={user.email}
+				readOnly
+				type='email'
+			/>
+			<label className='field'>
+				<span>О себе</span>
+				<textarea
+					name='about'
+					rows={3}
+					defaultValue={user.about || ''}
+					maxLength={500}
+				/>
+			</label>
+			<Input
+				label='Ссылка на аватар'
+				name='avatarPath'
+				type='url'
+				defaultValue={user.avatarPath || ''}
+			/>
+			{error && (
+				<p className='form-error' role='alert'>
+					{error}
+				</p>
+			)}
+			<Button type='submit' disabled={isLoading}>
+				{isLoading ? 'Сохраняем…' : 'Сохранить профиль'}
+			</Button>
+		</form>
 	);
-});
+}
+
+export function ProfilePage() {
+	const { data, isLoading, error, refetch } = useGetProfileQuery();
+	return (
+		<section className='form-panel'>
+			<h1>Мои данные</h1>
+			<QueryState
+				loading={isLoading}
+				error={
+					error
+						? getMessageFromError(error, 'Не удалось загрузить профиль')
+						: undefined
+				}
+				retry={refetch}>
+				{data && <ProfileForm key={data.id} user={data} />}
+			</QueryState>
+		</section>
+	);
+}

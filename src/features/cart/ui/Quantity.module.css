@@ -1,0 +1,46 @@
+.quantity {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: #fff;
+}
+
+.quantity button,
+.quantity input {
+	height: 38px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--ink);
+	text-align: center;
+}
+
+.quantity button {
+	width: 33px;
+	cursor: pointer;
+	font-size: 19px;
+}
+
+.quantity button:hover:not(:disabled) {
+	background: var(--surface);
+}
+
+.quantity button:disabled {
+	color: var(--muted);
+	cursor: default;
+	opacity: 0.45;
+}
+
+.quantity input {
+	width: 32px;
+	border-inline: 1px solid var(--line);
+	border-radius: 0;
+	appearance: textfield;
+	font-size: 14px;
+	font-variant-numeric: tabular-nums;
+}
+
+.quantity input::-webkit-inner-spin-button {
+	appearance: none;
+}

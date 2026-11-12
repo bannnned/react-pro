@@ -1,6 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
-module.exports = {
-	plugins: [autoprefixer, cssnano({ preset: 'default' })],
-};
+module.exports = ({ env }) => ({
+	plugins: [autoprefixer(), ...(env === 'production' ? [cssnano({ preset: 'default' })] : [])],
+});

@@ -1,6 +1,3 @@
-import { WithProtection } from '../../../shared/store/HOCs/WithProtection';
-import { SignInForm } from '../../../widgets/SignInForm';
+import { AuthForm } from '../../../features/auth/ui/AuthForm';
 
-export const SignInPage = WithProtection(() => {
-	return <SignInForm />;
-});
+export const SignInPage = () => <AuthForm mode='signin' />;

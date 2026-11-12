@@ -1,0 +1,33 @@
+.modal {
+	width: min(430px, calc(100% - 32px));
+	padding: 0;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	color: var(--ink);
+	background: #fff;
+	box-shadow: 0 8px 32px #201d1a26;
+}
+
+.modal::backdrop {
+	background: #201d1a85;
+}
+
+.panel {
+	padding: 22px;
+}
+
+.panel h2 {
+	margin: 0 0 9px;
+	font-size: 22px;
+}
+
+.panel p {
+	margin: 0;
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 20px;
+}

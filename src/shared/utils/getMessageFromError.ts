@@ -1,11 +1,22 @@
-import { objectHasProperty } from './common';
+export function getMessageFromError(error: unknown, fallback: string) {
+	if (typeof error !== 'object' || error === null) return fallback;
 
-export const getMessageFromError = (
-	error: unknown,
-	defaultErrorMessage: string
-) => {
-	if (objectHasProperty(error, 'message') && typeof error.message === 'string')
-		return error.message;
-
-	return defaultErrorMessage;
-};
+	const details = 'data' in error ? error.data : error;
+	if (typeof details === 'object' && details !== null && 'message' in details) {
+		const { message } = details;
+		if (typeof message === 'string') return message;
+		if (
+			Array.isArray(message) &&
+			message.every((part) => typeof part === 'string')
+		) {
+			return message.join('. ');
+		}
+	}
+	if (
+		'status' in error &&
+		(error.status === 'FETCH_ERROR' || error.status === 'TIMEOUT_ERROR')
+	) {
+		return 'Сервер недоступен. Попробуйте ещё раз.';
+	}
+	return fallback;
+}

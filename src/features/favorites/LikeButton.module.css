@@ -1,0 +1,27 @@
+.heart {
+	display: inline-grid;
+	width: 40px;
+	height: 40px;
+	flex: 0 0 auto;
+	place-items: center;
+	padding: 0;
+	color: var(--ink);
+	background: #fff;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	font-size: 23px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.heart:hover:not(:disabled) {
+	background: var(--surface);
+}
+
+.heart[aria-pressed='true'] {
+	color: var(--danger);
+}
+
+.heart[aria-busy='true'] {
+	cursor: progress;
+}

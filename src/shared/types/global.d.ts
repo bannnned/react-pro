@@ -1,122 +1,38 @@
 export {};
 
 declare global {
-	type ProductsData = {
-		products: Product[];
-		length: number;
+	type User = {
+		id: string;
+		name?: string;
+		email: string;
+		about?: string;
+		avatarPath?: string;
 	};
 
-	type Category = {
-		id: number;
-		name: string;
-		slug: string;
-	};
+	type Like = { id: string; userId: string; productId: string };
 
-	type Review = BaseDates & {
+	type Review = {
 		id: string;
 		user: User;
 		text: string;
 		rating: number;
-		product: ReviewProduct;
+		createdAt: string;
 	};
 
-	type Role = 'USER';
-
-	type FavoritePost = {
-		id: string;
-		userId: string;
-		postId: string;
-		post: Post;
-	};
-
-	type Post = BaseDates & {
-		id: string;
-		userId: string;
-		title: string;
-		slug: string;
-		description: string;
-		body: string;
-		images: string;
-		tags: string[];
-		isPublished: boolean;
-		favoritesCount: number;
-	};
-
-	type BaseLike = {
-		id: string;
-		userId: string;
-		productId: string;
-	};
-
-	type Like = BaseLike & {
-		user: LikeUser;
-	};
-
-	type ReviewUserLike = BaseLike & {
-		product: ReviewProduct;
-	};
-
-	type BaseUser = {
-		id: string;
-		roles: Role[];
-		name: string;
-		email: string;
-		phone: string;
-		avatarPath: string;
-		about: string;
-	};
-
-	type User = BaseUser & {
-		likes: ReviewUserLike[];
-		favoritesPost: FavoritePost[];
-	};
-
-	type LikeUser = BaseDates &
-		BaseUser & {
-			provider: null;
-			isAdmin: boolean;
-			isBlocked: boolean;
-			password: string;
-		};
-
-	type BaseProduct = BaseDates & {
+	type Product = {
 		id: string;
 		name: string;
 		description: string;
 		price: number;
 		images: string;
-		slug: string;
 		discount: number;
-		isPublished: boolean;
 		stock: number;
 		tags: string[];
-	};
-
-	type Product = BaseProduct & {
-		reviews: Review[];
-		category: Category;
-		user: User;
+		user?: User;
 		likes: Like[];
+		reviews: Review[];
 	};
 
-	type ReviewProduct = BaseProduct & {
-		categoryId: number;
-		userId: string;
-		wight: string;
-	};
-
-	type CartProduct = Product & {
-		count: number;
-	};
-
-	type BaseDates = {
-		createdAt: string;
-		updatedAt?: string;
-	};
-
+	type CartProduct = Product & { count: number };
 	type Sort = 'high-price' | 'low-price' | 'newest' | 'oldest';
-
-	type Token = {
-		accessToken: string;
-	};
 }

@@ -1,9 +1,3 @@
-const { merge } = require('webpack-merge');
-const commonConfig = require('./webpack.common.js');
+const common = require('./webpack.common');
 
-module.exports = (envVars) => {
-	const { env } = envVars;
-	const envConfig = require(`./webpack.${env}.js`);
-	const config = merge(commonConfig, envConfig);
-	return config;
-};
+module.exports = (_env, { mode = 'production' } = {}) => common(mode);

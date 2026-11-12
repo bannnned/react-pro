@@ -1,26 +1,20 @@
 import './styles/normalize.css';
 import './styles/styles.css';
-import { Outlet } from 'react-router-dom';
-import { Header } from '../widgets/Header';
-import { Sort } from '../shared/ui/Sort';
-import { Footer } from '../widgets/Footer';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { Header } from '../widgets/Header';
+import { Footer } from '../widgets/Footer';
 
-export const App = () => {
+export function App() {
 	return (
 		<>
 			<Header />
-			<Sort />
-			<Outlet />
-			<ToastContainer
-				position='top-right'
-				autoClose={5000}
-				hideProgressBar={false}
-				pauseOnHover
-				theme='colored'
-			/>
+			<main className='container page'>
+				<Outlet />
+			</main>
+			<ToastContainer position='top-right' autoClose={4000} />
 			<Footer />
 		</>
 	);
-};
+}

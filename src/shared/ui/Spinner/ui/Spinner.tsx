@@ -1,15 +1,14 @@
-import classNames from 'classnames';
 import s from './Spinner.module.css';
 
-export const Spinner = () => {
+export function Spinner() {
 	return (
-		<div className={classNames(s['wrapper'])}>
-			<div className={classNames(s['loader'])}>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+		<div className={s.wrapper} role='status' aria-label='Загрузка'>
+			<div className={s.loader} aria-hidden='true'>
+				<div />
+				<div />
+				<div />
+				<div />
 			</div>
 		</div>
 	);
-};
+}
