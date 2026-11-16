@@ -6,7 +6,7 @@ import { useAddReviewMutation } from '../products/api/productsApi';
 
 const dates = new Intl.DateTimeFormat('ru-RU', { dateStyle: 'medium' });
 
-export function Stars({ rating }: { rating: number }) {
+export const Stars = ({ rating }: { rating: number }) => {
 	const rounded = Math.round(Math.max(0, Math.min(5, rating)));
 	return (
 		<span className='stars' role='img' aria-label={`Оценка ${rating} из 5`}>
@@ -14,9 +14,9 @@ export function Stars({ rating }: { rating: number }) {
 			{'☆'.repeat(5 - rounded)}
 		</span>
 	);
-}
+};
 
-export function Reviews({ product }: { product: Product }) {
+export const Reviews = ({ product }: { product: Product }) => {
 	const [submitReview, { isLoading }] = useAddReviewMutation();
 	const [error, setError] = useState('');
 
@@ -94,4 +94,4 @@ export function Reviews({ product }: { product: Product }) {
 			</form>
 		</section>
 	);
-}
+};

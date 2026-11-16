@@ -12,34 +12,38 @@ import {
 import { CartControls } from './CartControls';
 import styles from './Cart.module.css';
 
-const CartItem = memo(function CartItem({
-	product,
-	onRemove,
-}: {
-	product: CartProduct;
-	onRemove: (product: CartProduct) => void;
-}) {
-	return (
-		<li className={styles.item} data-product-id={product.id}>
-			<img src={product.images} alt='' width='96' height='80' />
-			<div className={styles.itemMain}>
-				<Link to={'/products/' + product.id}>{product.name}</Link>
-				<CartControls product={product} onRemove={onRemove} />
-			</div>
-			<strong>
-				{money((product.price - product.discount) * product.count)}
-			</strong>
-			<Button
-				variant='secondary'
-				onClick={() => onRemove(product)}
-				aria-label={'Удалить: ' + product.name}>
-				Удалить
-			</Button>
-		</li>
-	);
-});
+const CartItem = memo(
+	({
+		product,
+		onRemove,
+	}: {
+		product: CartProduct;
+		onRemove: (product: CartProduct) => void;
+	}) => {
+		return (
+			<li className={styles.item} data-product-id={product.id}>
+				<img src={product.images} alt='' width='96' height='80' />
+				<div className={styles.itemMain}>
+					<Link to={'/products/' + product.id}>{product.name}</Link>
+					<CartControls product={product} onRemove={onRemove} />
+				</div>
+				<strong>
+					{money((product.price - product.discount) * product.count)}
+				</strong>
+				<Button
+					variant='secondary'
+					onClick={() => onRemove(product)}
+					aria-label={'Удалить: ' + product.name}>
+					Удалить
+				</Button>
+			</li>
+		);
+	}
+);
 
-function CartSummary() {
+CartItem.displayName = 'CartItem';
+
+const CartSummary = () => {
 	const { count, total, discount } = useAppSelector(getCartSummary);
 	return (
 		<aside className={styles.summary}>
@@ -64,9 +68,9 @@ function CartSummary() {
 			</dl>
 		</aside>
 	);
-}
+};
 
-export function Cart() {
+export const Cart = () => {
 	const products = useAppSelector(getCartProducts);
 	const dispatch = useAppDispatch();
 	const [removing, setRemoving] = useState<CartProduct | null>(null);
@@ -116,4 +120,4 @@ export function Cart() {
 			)}
 		</section>
 	);
-}
+};

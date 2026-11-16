@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import { Header } from '../widgets/Header';
 import { Footer } from '../widgets/Footer';
 
-export function App() {
+export const App = () => {
 	return (
 		<>
 			<Header />
@@ -17,4 +17,4 @@ export function App() {
 			<Footer />
 		</>
 	);
-}
+};

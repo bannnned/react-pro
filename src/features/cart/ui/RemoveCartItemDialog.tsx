@@ -6,11 +6,11 @@ type RemoveCartItemDialogProps = {
 	onConfirm: () => void;
 };
 
-export function RemoveCartItemDialog({
+export const RemoveCartItemDialog = ({
 	name,
 	onClose,
 	onConfirm,
-}: RemoveCartItemDialogProps) {
+}: RemoveCartItemDialogProps) => {
 	return (
 		<Modal
 			title='Удалить товар из корзины?'
@@ -20,4 +20,4 @@ export function RemoveCartItemDialog({
 			<p>Товар «{name}» будет удалён из корзины.</p>
 		</Modal>
 	);
-}
+};

@@ -25,7 +25,7 @@ const schema = object({
 		.required('Введите пароль'),
 });
 
-export function AuthForm({ mode }: { mode: 'signin' | 'signup' }) {
+export const AuthForm = ({ mode }: { mode: 'signin' | 'signup' }) => {
 	const isSignIn = mode === 'signin';
 	const [signIn] = useSignInMutation();
 	const [signUp] = useSignUpMutation();
@@ -110,4 +110,4 @@ export function AuthForm({ mode }: { mode: 'signin' | 'signup' }) {
 			</p>
 		</section>
 	);
-}
+};

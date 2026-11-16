@@ -1,6 +1,6 @@
 import s from './Spinner.module.css';
 
-export function Spinner() {
+export const Spinner = () => {
 	return (
 		<div className={s.wrapper} role='status' aria-label='Загрузка'>
 			<div className={s.loader} aria-hidden='true'>
@@ -11,4 +11,4 @@ export function Spinner() {
 			</div>
 		</div>
 	);
-}
+};

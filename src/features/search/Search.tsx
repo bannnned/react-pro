@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 
-export function Search() {
+export const Search = () => {
 	const [params, setParams] = useSearchParams();
 	const value = params.get('q') || '';
 
@@ -44,4 +44,4 @@ export function Search() {
 			)}
 		</form>
 	);
-}
+};

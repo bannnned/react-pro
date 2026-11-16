@@ -19,7 +19,7 @@ import { getMessageFromError } from '../../../shared/utils/getMessageFromError';
 import { money } from '../../../shared/utils/money';
 import styles from '../../../features/products/ui/Products.module.css';
 
-function ProductDetail({ product }: { product: Product }) {
+const ProductDetail = ({ product }: { product: Product }) => {
 	const userId = useAppSelector(getUser)?.id;
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -86,9 +86,9 @@ function ProductDetail({ product }: { product: Product }) {
 			)}
 		</>
 	);
-}
+};
 
-export function ProductPage() {
+export const ProductPage = () => {
 	const { productId } = useParams();
 	const { state } = useLocation();
 	const {
@@ -115,4 +115,4 @@ export function ProductPage() {
 			</QueryState>
 		</section>
 	);
-}
+};

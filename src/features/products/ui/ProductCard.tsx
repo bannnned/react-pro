@@ -5,11 +5,7 @@ import { LikeButton } from '../../favorites/LikeButton';
 import { money } from '../../../shared/utils/money';
 import styles from './Products.module.css';
 
-export const ProductCard = memo(function ProductCard({
-	product,
-}: {
-	product: Product;
-}) {
+export const ProductCard = memo(({ product }: { product: Product }) => {
 	const { pathname, search } = useLocation();
 	return (
 		<article className={styles.card}>
@@ -31,3 +27,5 @@ export const ProductCard = memo(function ProductCard({
 		</article>
 	);
 });
+
+ProductCard.displayName = 'ProductCard';

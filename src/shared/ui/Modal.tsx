@@ -12,14 +12,14 @@ type ModalProps = {
 	onConfirm: () => void;
 };
 
-export function Modal({
+export const Modal = ({
 	title,
 	children,
 	confirmLabel,
 	busy,
 	onClose,
 	onConfirm,
-}: ModalProps) {
+}: ModalProps) => {
 	const dialog = useRef<HTMLDialogElement>(null);
 	const cancel = useRef<HTMLButtonElement>(null);
 	const opener = useRef<HTMLElement | null>(null);
@@ -77,4 +77,4 @@ export function Modal({
 		</dialog>,
 		portalRoot
 	);
-}
+};

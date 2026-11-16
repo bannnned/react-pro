@@ -9,12 +9,12 @@ type QueryStateProps = {
 	children: ReactNode;
 };
 
-export function QueryState({
+export const QueryState = ({
 	loading,
 	error,
 	retry,
 	children,
-}: QueryStateProps) {
+}: QueryStateProps) => {
 	if (loading) return <Spinner />;
 	if (error)
 		return (
@@ -24,4 +24,4 @@ export function QueryState({
 			</div>
 		);
 	return children;
-}
+};

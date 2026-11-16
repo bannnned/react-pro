@@ -15,7 +15,7 @@ type CartControlsProps = {
 	onRemove?: (product: CartProduct) => void;
 };
 
-export function CartControls({ product, onRemove }: CartControlsProps) {
+export const CartControls = ({ product, onRemove }: CartControlsProps) => {
 	const cartItem = useAppSelector((state) => getCartItem(state, product.id));
 	const dispatch = useAppDispatch();
 	const [confirmingRemoval, setConfirmingRemoval] = useState(false);
@@ -93,4 +93,4 @@ export function CartControls({ product, onRemove }: CartControlsProps) {
 			)}
 		</>
 	);
-}
+};

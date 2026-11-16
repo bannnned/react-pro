@@ -9,7 +9,7 @@ const SORTS: ReadonlyArray<{ value: Sort; label: string }> = [
 	{ value: 'high-price', label: 'Сначала дороже' },
 ];
 
-export function HomePage() {
+export const HomePage = () => {
 	const [params, setParams] = useSearchParams();
 	const sort =
 		SORTS.find((option) => option.value === params.get('sort'))?.value ??
@@ -48,4 +48,4 @@ export function HomePage() {
 			/>
 		</section>
 	);
-}
+};

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Logo } from '../../../shared/ui/Logo';
 
-export function Footer() {
+export const Footer = () => {
 	return (
 		<footer className='site-footer'>
 			<div className='container footer-inner'>
@@ -11,4 +11,4 @@ export function Footer() {
 			</div>
 		</footer>
 	);
-}
+};

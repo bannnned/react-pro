@@ -8,13 +8,13 @@ import { ProductGrid } from './ProductGrid';
 const PAGE_SIZE = 6;
 const empty: Product[] = [];
 
-export function CatalogResults({
+export const CatalogResults = ({
 	searchText,
 	sort,
 }: {
 	searchText: string;
 	sort: Sort;
-}) {
+}) => {
 	const [limit, setLimit] = useState(PAGE_SIZE);
 	const { data, isFetching, error, refetch } = useGetProductsQuery({
 		searchText,
@@ -63,4 +63,4 @@ export function CatalogResults({
 			)}
 		</QueryState>
 	);
-}
+};

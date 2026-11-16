@@ -5,7 +5,7 @@ import { useCreateProductMutation } from '../../../features/products/api/product
 import { Button, Input } from '../../../shared/ui/controls';
 import { getMessageFromError } from '../../../shared/utils/getMessageFromError';
 
-export function CreateProductPage() {
+export const CreateProductPage = () => {
 	const [createProduct, { isLoading }] = useCreateProductMutation();
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
@@ -116,4 +116,4 @@ export function CreateProductPage() {
 			</form>
 		</section>
 	);
-}
+};

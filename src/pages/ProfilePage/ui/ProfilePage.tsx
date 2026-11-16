@@ -8,7 +8,7 @@ import { Button, Input } from '../../../shared/ui/controls';
 import { QueryState } from '../../../shared/ui/QueryState';
 import { getMessageFromError } from '../../../shared/utils/getMessageFromError';
 
-function ProfileForm({ user }: { user: User }) {
+const ProfileForm = ({ user }: { user: User }) => {
 	const [update, { isLoading }] = useUpdateProfileMutation();
 	const [error, setError] = useState('');
 
@@ -72,9 +72,9 @@ function ProfileForm({ user }: { user: User }) {
 			</Button>
 		</form>
 	);
-}
+};
 
-export function ProfilePage() {
+export const ProfilePage = () => {
 	const { data, isLoading, error, refetch } = useGetProfileQuery();
 	return (
 		<section className='form-panel'>
@@ -91,4 +91,4 @@ export function ProfilePage() {
 			</QueryState>
 		</section>
 	);
-}
+};

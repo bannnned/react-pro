@@ -2,7 +2,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../../shared/store/hooks';
 import { getAccessToken } from '../model/session';
 
-export function ProtectedRoute() {
+export const ProtectedRoute = () => {
 	const accessToken = useAppSelector(getAccessToken);
 	const { pathname, search, hash } = useLocation();
 
@@ -11,4 +11,4 @@ export function ProtectedRoute() {
 	) : (
 		<Navigate replace to='/signin' state={{ from: pathname + search + hash }} />
 	);
-}
+};

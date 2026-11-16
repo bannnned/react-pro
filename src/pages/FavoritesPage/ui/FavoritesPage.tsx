@@ -3,7 +3,7 @@ import { ProductGrid } from '../../../features/products/ui/ProductGrid';
 import { QueryState } from '../../../shared/ui/QueryState';
 import { getMessageFromError } from '../../../shared/utils/getMessageFromError';
 
-export function FavoritesPage() {
+export const FavoritesPage = () => {
 	const { favorites, isLoading, error, refetch } = useFavorites();
 
 	return (
@@ -24,4 +24,4 @@ export function FavoritesPage() {
 			</QueryState>
 		</section>
 	);
-}
+};

@@ -4,12 +4,12 @@ type ButtonProps = ComponentPropsWithRef<'button'> & {
 	variant?: 'primary' | 'secondary' | 'danger';
 };
 
-export function Button({
+export const Button = ({
 	variant = 'primary',
 	type = 'button',
 	className = '',
 	...props
-}: ButtonProps) {
+}: ButtonProps) => {
 	return (
 		<button
 			type={type}
@@ -17,14 +17,14 @@ export function Button({
 			{...props}
 		/>
 	);
-}
+};
 
 type InputProps = ComponentPropsWithRef<'input'> & {
 	label: string;
 	error?: string;
 };
 
-export function Input({ label, error, id, ...props }: InputProps) {
+export const Input = ({ label, error, id, ...props }: InputProps) => {
 	const generatedId = useId();
 	const inputId = id || generatedId;
 	return (
@@ -39,4 +39,4 @@ export function Input({ label, error, id, ...props }: InputProps) {
 			{error && <small id={`${inputId}-error`}>{error}</small>}
 		</label>
 	);
-}
+};

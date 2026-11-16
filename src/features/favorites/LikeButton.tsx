@@ -50,7 +50,7 @@ function confirmLike(
 	});
 }
 
-export function LikeButton({ product }: { product: Product }) {
+export const LikeButton = ({ product }: { product: Product }) => {
 	const userId = useAppSelector(getUser)?.id;
 	const confirmed =
 		product.likes?.some((like) => like.userId === userId) ?? false;
@@ -104,4 +104,4 @@ export function LikeButton({ product }: { product: Product }) {
 			<span aria-hidden='true'>{liked ? '♥' : '♡'}</span>
 		</button>
 	);
-}
+};

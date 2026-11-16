@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../shared/store/hooks';
 import { Logo } from '../../../shared/ui/Logo';
 import styles from './Header.module.css';
 
-export function Header() {
+export const Header = () => {
 	const token = useAppSelector(getAccessToken);
 	const count = useAppSelector(getCartCount);
 	const { favorites } = useFavorites();
@@ -57,4 +57,4 @@ export function Header() {
 			</div>
 		</header>
 	);
-}
+};
