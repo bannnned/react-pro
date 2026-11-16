@@ -5,13 +5,13 @@ const staff = {
 };
 export const demoUser = {
 	id: 'demo-buyer',
-	email: 'demo@dogfood.test',
+	email: '1@1.ru',
 	name: 'Мария Волкова',
 	about:
 		'Хозяйка корги по кличке Лис. Подбираю лакомства для прогулок и тренировок.',
 	avatarPath: '',
 };
-export const demoPassword = 'Dogfood19!';
+export const demoPassword = 'dogdog';
 
 const rows = [
 	[
